@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Shooter;
 
 namespace CrispyGuacamole
 {
@@ -11,6 +12,9 @@ namespace CrispyGuacamole
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        //Represents the player
+        Player player;
 
         public Game1()
         {
@@ -28,6 +32,9 @@ namespace CrispyGuacamole
         {
             // TODO: Add your initialization logic here
 
+            //Initialize the player class
+            player = new Shooter.Player();
+
             base.Initialize();
         }
 
@@ -41,6 +48,12 @@ namespace CrispyGuacamole
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+            //Load the player resources
+            Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X,
+                GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.Height / 2);
+            player.Initialize(Content.Load<Texture2D>("Graphics\\boat.png"), playerPosition);
+
         }
 
         /// <summary>
@@ -76,6 +89,15 @@ namespace CrispyGuacamole
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+
+            //Start Drawing
+            spriteBatch.Begin();
+
+            //Draw the player
+            player.Draw(spriteBatch);
+
+            //Stop drawing
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
