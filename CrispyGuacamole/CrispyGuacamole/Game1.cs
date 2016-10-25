@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Shooter;
@@ -12,14 +13,26 @@ namespace CrispyGuacamole
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        //Represents the player
-        Player player;
+        Texture2D texture;
+        Vector2 position;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            position = new Vector2(0, 0);
+
+            /*this.Activated += (sender, args) =>
+            {
+                this.Window.Title = "Active Application";
+            };
+            this.Deactivated += (sender, args) =>
+            {
+                this.Window.Title = "DeActive Application";
+            };*/
+
+            this.IsFixedTimeStep = false;
+            this.graphics.SynchronizeWithVerticalRetrace = false;
         }
 
         /// <summary>
@@ -31,9 +44,11 @@ namespace CrispyGuacamole
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
-            //Initialize the player class
-            player = new Shooter.Player();
+            texture = new Texture2D(this.GraphicsDevice, 100, 100);
+            Color[] colorData = new Color[100 * 100];
+            for (int i = 0; i < 10000; i++)
+                colorData[i] = Color.Red;
+            texture.SetData<Color>(colorData);
 
             base.Initialize();
         }
@@ -48,12 +63,7 @@ namespace CrispyGuacamole
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-
-            //Load the player resources
-            Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X,
-                GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.Height / 2);
-            player.Initialize(Content.Load<Texture2D>("Graphics\\boat.png"), playerPosition);
-
+            
         }
 
         /// <summary>
@@ -72,12 +82,20 @@ namespace CrispyGuacamole
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            if (IsActive)
+            {
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    Exit();
 
-            // TODO: Add your update logic here
+                position.X += 200.0f * (float)gameTime.ElapsedGameTime.TotalSeconds; ;
+                if (position.X > this.GraphicsDevice.Viewport.Width)
+                    position.X = 0;
 
-            base.Update(gameTime);
+
+                // TODO: Add your update logic here
+
+                base.Update(gameTime);
+            }
         }
 
         /// <summary>
@@ -89,17 +107,25 @@ namespace CrispyGuacamole
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
-            //Start Drawing
             spriteBatch.Begin();
-
-            //Draw the player
-            player.Draw(spriteBatch);
-
-            //Stop drawing
+            spriteBatch.Draw(texture, position);
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
+
+        //This is called when the Window is Active
+        protected override void OnActivated(object sender, EventArgs args)
+        {
+            this.Window.Title = "Active Application";
+            base.OnActivated(sender, args);
+        }
+
+        protected override void OnDeactivated(object sender, EventArgs args)
+        {
+            this.Window.Title = "Inactive Application";
+            base.OnDeactivated(sender, args);
+        }
+
     }
 }

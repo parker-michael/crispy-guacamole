@@ -20,8 +20,8 @@ C:\Users\Michael\Documents\GitHub\crispy-guacamole\CrispyGuacamole\CrispyGuacamo
 C:\Users\Michael\Documents\GitHub\crispy-guacamole\CrispyGuacamole\CrispyGuacamole\bin\Windows\x86\Debug\SharpDX.XInput.xml
 C:\Users\Michael\Documents\GitHub\crispy-guacamole\CrispyGuacamole\CrispyGuacamole\bin\Windows\x86\Debug\SharpDX.RawInput.xml
 C:\Users\Michael\Documents\GitHub\crispy-guacamole\CrispyGuacamole\CrispyGuacamole\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
-C:\Users\Michael\Documents\GitHub\crispy-guacamole\CrispyGuacamole\CrispyGuacamole\obj\x86\Debug\CrispyGuacamole.csprojResolveAssemblyReference.cache
 C:\Users\Michael\Documents\GitHub\crispy-guacamole\CrispyGuacamole\CrispyGuacamole\obj\x86\Debug\CrispyGuacamole.exe
 C:\Users\Michael\Documents\GitHub\crispy-guacamole\CrispyGuacamole\CrispyGuacamole\obj\x86\Debug\CrispyGuacamole.pdb
-C:\Users\Michael\Documents\GitHub\crispy-guacamole\CrispyGuacamole\CrispyGuacamole\bin\Windows\x86\Debug\Content\Graphics\player.xnb
 C:\Users\Michael\Documents\GitHub\crispy-guacamole\CrispyGuacamole\CrispyGuacamole\bin\Windows\x86\Debug\Content\Graphics\boat.png
+C:\Users\Michael\Documents\GitHub\crispy-guacamole\CrispyGuacamole\CrispyGuacamole\bin\Windows\x86\Debug\Content\Graphics\boat.xnb
+C:\Users\Michael\Documents\GitHub\crispy-guacamole\CrispyGuacamole\CrispyGuacamole\bin\Windows\x86\Debug\Content\Graphics\boat2.xnb
